@@ -14,13 +14,13 @@
             <form method="POST">{% csrf_token %} 
 
                 <label>Nome</label>
-                <input class="form-control" type="text" placeholder="Insira seu nome completo">
+                <input name="nome" class="form-control" type="text" placeholder="Insira seu nome completo">
                 <br>
                 <label>Email</label>
-                <input class="form-control" type="text" placeholder="Insira um email válido">
+                <input name="email" class="form-control" type="text" placeholder="Insira um email válido">
                 <br>
                 <label>Senha</label>
-                <input class="form-control" type="password" placeholder="Digite sua senha">
+                <input name="senha" class="form-control" type="password" placeholder="Digite sua senha">
                 <br>
                 <input class="btn btn-info btn-lg" type="submit" value="Enviar">
 
