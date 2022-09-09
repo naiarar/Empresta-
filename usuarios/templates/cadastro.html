@@ -11,7 +11,7 @@
             <h1>Cadastre-se</h1>
             <hr>
 
-            <form method="POST">{% csrf_token %} 
+            <form method="POST" action="{% url 'valida_cadastro' %}">{% csrf_token %} 
 
                 <label>Nome</label>
                 <input name="nome" class="form-control" type="text" placeholder="Insira seu nome completo">
