@@ -1,6 +1,7 @@
 from email import generator
 from django.db import models
 from uuid import uuid4
+from datetime import datetime
 
 class Livros(models.Model):
     id_livro = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -10,13 +11,20 @@ class Livros(models.Model):
     qnt_pag = models.IntegerField()
     editora = models.CharField(max_length=50)
     ano_publi = models.DateField(max_length=4)
-    nota = models.IntegerField(max_length=2)
+    nota = models.IntegerField()
     data_cadastro = models.DateTimeField(auto_now_add=True)
     emprestado = models.BooleanField(default=False)
-    nome_emprestado = models.CharField(max_length=50)
-    data_emprestimo = models.DateTimeField()
-    data_devolucao = models.DateTimeField()
-    
+    nome_emprestado = models.CharField(max_length=50, blank=True, null=True)
+    data_emprestimo = models.DateTimeField(blank=True, null=True)
+    data_devolucao = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Livro'
+
+    def __str__(self):
+        return self.titulo
+
+
 
 
 
