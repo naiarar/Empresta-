@@ -23,10 +23,9 @@ def valida_cadastro(request):
         return redirect('/auth/login/?status=2')
 
     try:
-    usuario = Usuario(nome = nome, senha = senha, email = email)
-    usuario.save()
+        usuario = Usuario(nome = nome, senha = senha, email = email)
+        usuario.save()
         return redirect('/auth/login/?status=0')
     except:
         return redirect('/auth/login/?status=3')
 
-    return HttpResponse(f'{nome} {senha} {email}')
