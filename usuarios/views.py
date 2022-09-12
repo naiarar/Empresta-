@@ -35,3 +35,9 @@ def valida_cadastro(request):
     except:
         return redirect('/auth/cadastro/?status=4')
 
+def valida_login(request):
+    email = request.POST.get('email')
+    senha = request.POST.get('senha')
+    return HttpResponse(f"{email} {senha}")
+
+
