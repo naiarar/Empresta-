@@ -5,10 +5,11 @@ from django.shortcuts import redirect
 from hashlib import sha256
 
 def login(request):
-    return HttpResponse('login') 
+    return render(request, 'login.html') 
 
 def cadastro(request):
-    return render(request, 'cadastro.html')
+    status = request.GET.get('status')
+    return render(request, 'cadastro.html', {'status': status})
 
 def valida_cadastro(request):
     nome = request.POST.get('nome')
