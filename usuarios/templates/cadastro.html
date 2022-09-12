@@ -6,6 +6,25 @@
 
 <div class="container">
     <br> 
+    {%if status =='1'%}
+        <div class="alert alert-danger" role="alert">
+            Nome e email não podem estar em branco
+    {% endif %}
+
+    {%if status =='2'%}
+        <div class="alert alert-danger" role="alert">
+            Sua senha deve ter pelo menos 4 caracteres
+    {% endif %}    
+    
+    {%if status =='3'%}
+        <div class="alert alert-danger" role="alert">
+            Usuário já existe no sistema
+    {% endif %}
+
+    {%if status =='4'%}
+        <div class="alert alert-danger" role="alert">
+            Erro interno no sistema
+    {% endif %}
    <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1>Cadastre-se</h1>
