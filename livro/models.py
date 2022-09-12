@@ -3,6 +3,10 @@ from django.db import models
 from uuid import uuid4
 from datetime import datetime
 
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=30)
+    descricao = models.TextField()
 class Livros(models.Model):
     id_livro = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     titulo = models.CharField(max_length=100)
@@ -17,6 +21,8 @@ class Livros(models.Model):
     nome_emprestado = models.CharField(max_length=50, blank=True, null=True)
     data_emprestimo = models.DateTimeField(blank=True, null=True)
     data_devolucao = models.DateTimeField(blank=True, null=True)
+
+ 
 
     class Meta:
         verbose_name = 'Livro'
