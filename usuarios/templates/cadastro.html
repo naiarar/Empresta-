@@ -6,6 +6,11 @@
 
 <div class="container">
     <br> 
+    {%if status =='0'%}
+    <div class="alert alert-sucess" role="alert">
+        Cadastro realizado com sucesso
+    {% endif %}
+
     {%if status =='1'%}
         <div class="alert alert-danger" role="alert">
             Nome e email não podem estar em branco
