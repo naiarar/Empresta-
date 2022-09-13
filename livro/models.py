@@ -17,7 +17,7 @@ class Livros(models.Model):
     autor = models.CharField(max_length=50)
     qnt_pag = models.IntegerField()
     editora = models.CharField(max_length=50)
-    ano_publi = models.DateField(max_length=4)
+    ano_publi = models.CharField(max_length=10)
     nota = models.IntegerField()
     data_cadastro = models.DateTimeField(auto_now_add=True)
     emprestado = models.BooleanField(default=False)
