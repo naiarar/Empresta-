@@ -3,14 +3,21 @@
 {% block 'conteudo' %}
 
     <div style="text-align: center;" class="container">
-    
         <h1> {{livro.titulo}} </h1>
+        <label>Autor:</label>
         <h4> {{livro.autor}} </h4>
+        <label>Quantidade de páginas:</label>
         <h5> {{livro.qnt_pag}} </h5>
+        <label>Editora:</label>
         <h5> {{livro.editora}} </h5>
+        <label>Ano de publicação:</label>
         <h5> {{livro.ano_publi}} </h5>
+        <label>Nota do leitor:</label>
         <h5> {{livro.nota}} </h5>
-        <h5> Cadastrado em: {{livro.data_cadastro}} </h5>
+        <label>Data de cadastro:</label>
+        <h5>{{livro.data_cadastro}} </h5>
+        <label>Categoria:</label>
+        <h5>{{livro.categoria}} </h5>
         <h5> {% if livro.emprestado %}
             <h6 class="card-subtitle mb-2 text-muted">
                 Disponível
@@ -38,7 +45,9 @@
                 </svg>
             </h6>
             {% endif %}</h5>
-        <h5> {{livro.nome}} </h5>
+            <a href="{% url 'historico_emprestimos' livro.id %}" class="btn btn-primary btn-lg btn-block">Ver histórico de emprestimos</button>
+ 
+
       
       
       
