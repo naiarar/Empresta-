@@ -4,6 +4,8 @@
 {% block 'conteudo' %}
 
 <div class="container">
+    <br>
+    <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
     <div class="row">
         <div class="col">
             <h1>Minha Home</h1>
@@ -48,7 +50,7 @@
                     </h6>
                     {% endif %}
 
-                    <a href="{% url 'ver_livros' livro.id %}" class="bnt bnt-info">Acessar</a>
+                    <a href="{% url 'ver_livros' livro.id %}" class="bnt bnt-info">Acessar livro</a>
                 </div>
             </div>
 
