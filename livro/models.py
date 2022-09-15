@@ -20,9 +20,9 @@ class Livros(models.Model):
     ano_publi = models.CharField(max_length=10)
     nota = models.IntegerField()
     data_cadastro = models.DateTimeField(auto_now_add=True)
-    emprestado = models.BooleanField(default=False)
     categoria = models.ForeignKey(Categoria, on_delete = models.DO_NOTHING)
     usuario = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
+    emprestado = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Livro'
