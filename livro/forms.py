@@ -8,4 +8,8 @@ class CadastroLivro(forms.ModelForm):
         model = Livros
         fields = ('titulo', 'autor', 'qnt_pag', 'editora', 'ano_publi', 'nota', 'categoria', 'usuario')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
 
