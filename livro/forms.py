@@ -6,7 +6,7 @@ from .models import Livros
 class CadastroLivro(forms.ModelForm):
     class Meta: 
         model = Livros
-        fields = ('titulo', 'autor', 'qnt_pag', 'editora', 'ano_publi', 'nota', 'categoria', 'usuario')
+        fields = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
