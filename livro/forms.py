@@ -10,7 +10,7 @@ class CadastroLivro(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['usuario'].widget = forms.HiddenInput
+        self.fields['usuario'].widget = forms.HiddenInput()
 
 
 
