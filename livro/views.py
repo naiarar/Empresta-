@@ -1,5 +1,5 @@
 from curses.ascii import HT
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from usuarios.models import Usuario
@@ -48,14 +48,6 @@ def cadastrar_livro(request):
         form = CadastroLivro(request.POST)
         if form.is_valid:
             form.save()
-            return HttpResponse('Cadastro realizado com sucesso!')
+            return redirect('/livro/home')
         else:
             return HttpResponse('DADOS INVÁLIDOS')
-        # livro = Livros
-        # titulo = form.data['titulo']
-        # autor = form.data['autor']
-        # qnt_pag = form.data['qnt_pag']
-        # editora = form.data['editora']
-        # ano_publi = form.data['ano_publi']
-        # nota = form.data['nota']
-        # categoria = form.data['categoria']
