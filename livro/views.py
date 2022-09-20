@@ -25,7 +25,10 @@ def ver_livros(request, id):
         livros = Livros.objects.get(id=id)
         form = CadastroLivro()
         if request.session.get('usuario') == livros.usuario.id:
-            return render(request, 'ver_livro.html', {'livro': livros, 'usuario_logado': request.session.get('usuario'), 'form': form})
+            return render(request, 'ver_livro.html', {'livro': livros, 
+                                                      'usuario_logado': request.session.get('usuario'), 
+                                                      'form': form,
+                                                      'id_livro':id})
         else:
             return HttpResponse('Esse livro não é seu')
     return redirect('/auth/login/?status=2')
@@ -51,3 +54,8 @@ def cadastrar_livro(request):
             return redirect('/livro/home')
         else:
             return HttpResponse('DADOS INVÁLIDOS')
+
+
+def excluir_livro(request, id):
+    livro = Livros.objects.get(id = id).delete()
+    return redirect('/livro/home')
