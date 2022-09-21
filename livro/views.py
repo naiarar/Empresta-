@@ -87,7 +87,7 @@ def emprestar_livro(request, id):
         livro.emprestado = True
         livro.save()
 
-        return HttpResponse('Emprestimo cadastrado com sucesso!')
+        return redirect('/livro/home')
     else:
 
         return HttpResponse('Desculpe, esse livro está emprestado')
@@ -108,5 +108,5 @@ def devolver_livro(request, id):
         livro.emprestado = False
         livro.save()
 
-        return HttpResponse('Devolução cadastrada com sucesso!')
+        return redirect('/livro/home')
 
