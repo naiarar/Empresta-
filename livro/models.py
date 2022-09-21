@@ -43,7 +43,7 @@ class Emprestimo(models.Model):
     )
     nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
     data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
-    data_devolucao = models.DateField(blank=True, null=True)
+    data_devolucao = models.DateTimeField(default=datetime.datetime.now())
     livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
     avaliacao = models.CharField(max_length=1, choices=choices)
 
