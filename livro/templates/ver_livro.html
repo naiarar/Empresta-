@@ -85,6 +85,8 @@
 
         <input onclick="exibe_input_emprestado(1)" type="submit" value="Emprestar Livro" class="btn btn-success">
     </form>
+    <br>
+
     <form id="form_devolucao" action="{% url 'devolver_livro' livro.id %}" method="POST">{% csrf_token %}
         <select id="nome_emprestado" name="nome_emprestado">
 
@@ -95,7 +97,7 @@
         </select>
 
 
-        <input onclick="exibe_input_devolucao(1)" type="submit" value="Devolve Livro" class="btn btn-success">
+        <input onclick="exibe_input_devolucao(1)" type="submit" value="Devolver Livro" class="btn btn-secondary">
     </form>
 
 </div>
