@@ -14,8 +14,18 @@ def home(request):
         form = CadastroLivro()
         form.fields['usuario'].initial = request.session['usuario']
 
+        usuarios = Usuario.objects.all()
+        print(usuarios)
 
-        return render(request, 'home.html', {'livros': livros, 'usuario_logado': request.session.get('usuario'), 'form': form})
+        conteudo = {
+            'livros': livros,
+            'usuario_logado': request.session.get('usuario'),
+            'form': form,
+            'usuario': usuario,
+            'usuarios': usuarios 
+        }
+
+        return render(request, 'home.html', conteudo)
     else:
         return redirect('/auth/login/?status=2')
 
@@ -25,10 +35,10 @@ def ver_livros(request, id):
         livros = Livros.objects.get(id=id)
         form = CadastroLivro()
         if request.session.get('usuario') == livros.usuario.id:
-            return render(request, 'ver_livro.html', {'livro': livros, 
-                                                      'usuario_logado': request.session.get('usuario'), 
+            return render(request, 'ver_livro.html', {'livro': livros,
+                                                      'usuario_logado': request.session.get('usuario'),
                                                       'form': form,
-                                                      'id_livro':id})
+                                                      'id_livro': id})
         else:
             return HttpResponse('Esse livro não é seu')
     return redirect('/auth/login/?status=2')
@@ -57,5 +67,9 @@ def cadastrar_livro(request):
 
 
 def excluir_livro(request, id):
-    livro = Livros.objects.get(id = id).delete()
+    livro = Livros.objects.get(id=id).delete()
     return redirect('/livro/home')
+
+
+def emprestar_livro(request, id):
+    return HttpResponse('teste')
