@@ -1,78 +1,104 @@
 {% extends 'base.html' %}
 
 {% block 'conteudo' %}
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Deseja mesmo excluir?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
-        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja mesmo excluir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
+            </div>
 
-      </div>
+        </div>
     </div>
-  </div>
-  
-    <div style="text-align: center;" class="container">
-        <h1> {{livro.titulo}} </h1>
-        <label>Autor:</label>
-        <h4> {{livro.autor}} </h4>
-        <label>Quantidade de páginas:</label>
-        <h5> {{livro.qnt_pag}} </h5>
-        <label>Editora:</label>
-        <h5> {{livro.editora}} </h5>
-        <label>Ano de publicação:</label>
-        <h5> {{livro.ano_publi}} </h5>
-        <label>Nota do leitor:</label>
-        <h5> {{livro.nota}} </h5>
-        <label>Data de cadastro:</label>
-        <h5>{{livro.data_cadastro}} </h5>
-        <label>Categoria:</label>
-        <h5>{{livro.categoria}} </h5>
-            {% if livro.emprestado %}
-            <h6 class="card-subtitle mb-2 text-muted">
-                Disponível
-                <svg class="d-inline" style="color : red;" xmlns="http://www.w3.org/2000/svg" width="24"
-                    height="24" fill="currentColor" class="bi bi-journal-x" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z" />
-                    <path
-                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                    <path
-                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                </svg>
-            </h6>
-            {% else %}
-            <h6 class="card-subtitle mb-2 text-muted">
-                Disponível
-                <svg style=" display: inline; color : green;" xmlns="http://www.w3.org/2000/svg" width="24"
-                    height="24" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                    <path
-                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                    <path
-                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                </svg>
-            </h6>
-        
-            {% endif %}
-            <a href="{% url 'historico_emprestimos' livro.id %}" class="btn btn-primary btn-lg ">Ver histórico de emprestimos</a>
-            <br>
-            <br>
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal2">
-                Excluir livro
-              </button>
+</div>
 
-      
-      
-      
-        
-        
-    </div>
+<div style="text-align: center;" class="container">
+    <h1> {{livro.titulo}} </h1>
+    <label>Autor:</label>
+    <h4> {{livro.autor}} </h4>
+    <label>Quantidade de páginas:</label>
+    <h5> {{livro.qnt_pag}} </h5>
+    <label>Editora:</label>
+    <h5> {{livro.editora}} </h5>
+    <label>Ano de publicação:</label>
+    <h5> {{livro.ano_publi}} </h5>
+    <label>Nota do leitor:</label>
+    <h5> {{livro.nota}} </h5>
+    <label>Data de cadastro:</label>
+    <h5>{{livro.data_cadastro}} </h5>
+    <label>Categoria:</label>
+    <h5>{{livro.categoria}} </h5>
+    {% if livro.emprestado %}
+    <h6 class="card-subtitle mb-2 text-muted">
+        Disponível
+        <svg class="d-inline" style="color : red;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            fill="currentColor" class="bi bi-journal-x" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z" />
+            <path
+                d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+            <path
+                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+        </svg>
+    </h6>
+    {% else %}
+    <h6 class="card-subtitle mb-2 text-muted">
+        Disponível
+        <svg style=" display: inline; color : green;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path
+                d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+            <path
+                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+        </svg>
+    </h6>
+
+    {% endif %}
+    <a href="{% url 'historico_emprestimos' livro.id %}" class="btn btn-primary btn-lg ">Ver histórico de
+        emprestimos</a>
+    <br>
+    <br>
+    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal2">
+        Excluir livro
+    </button>
+    <br>
+    <br>
+    <br>
+    <form id="form_emprestimo" action="{% url 'emprestar_livro' livro.id %}" method="POST">{% csrf_token %}
+        <select id="nome_emprestado" name="nome_emprestado">
+
+            {% for usuario in usuarios %}
+            <option value="{{usuario.id}}">{{usuario.nome}}</option>
+            {% endfor %}
+
+        </select>
+
+
+        <input onclick="exibe_input_emprestado(1)" type="submit" value="Emprestar Livro" class="btn btn-success">
+    </form>
+<script>
+    function exibe_input_emprestado(v1){
+        if(v1 = 1){
+            document.getElementById('nome_emprestado').style.display = "none"
+            document.getElementById('nome_emprestado').style.display = "block"
+        }
+
+
+
+    }
+
+
+</script>
+
+
+</div>
 {% endblock %}
