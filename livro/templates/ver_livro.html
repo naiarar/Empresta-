@@ -85,20 +85,18 @@
 
         <input onclick="exibe_input_emprestado(1)" type="submit" value="Emprestar Livro" class="btn btn-success">
     </form>
-<script>
-    function exibe_input_emprestado(v1){
-        if(v1 = 1){
-            document.getElementById('nome_emprestado').style.display = "none"
-            document.getElementById('nome_emprestado').style.display = "block"
-        }
+    <form id="form_devolucao" action="{% url 'devolver_livro' livro.id %}" method="POST">{% csrf_token %}
+        <select id="nome_emprestado" name="nome_emprestado">
+
+            {% for usuario in usuarios %}
+            <option value="{{usuario.id}}">{{usuario.nome}}</option>
+            {% endfor %}
+
+        </select>
 
 
-
-    }
-
-
-</script>
-
+        <input onclick="exibe_input_devolucao(1)" type="submit" value="Devolve Livro" class="btn btn-success">
+    </form>
 
 </div>
 {% endblock %}
