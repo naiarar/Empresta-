@@ -13,16 +13,13 @@ def home(request):
         livros = Livros.objects.filter(usuario=usuario)
         form = CadastroLivro()
         form.fields['usuario'].initial = request.session['usuario']
-
-        usuarios = Usuario.objects.all()
-        print(usuarios)
+        livros_emprestar = Livros.objects.filter(usuario = usuario).filter(emprestado = False)
 
         conteudo = {
             'livros': livros,
             'usuario_logado': request.session.get('usuario'),
             'form': form,
-            'usuario': usuario,
-            'usuarios': usuarios 
+            'usuario': usuario
         }
 
         return render(request, 'home.html', conteudo)
@@ -34,11 +31,15 @@ def ver_livros(request, id):
     if request.session.get('usuario'):
         livros = Livros.objects.get(id=id)
         form = CadastroLivro()
+
+        usuarios = Usuario.objects.all()
+
         if request.session.get('usuario') == livros.usuario.id:
             return render(request, 'ver_livro.html', {'livro': livros,
                                                       'usuario_logado': request.session.get('usuario'),
                                                       'form': form,
-                                                      'id_livro': id})
+                                                      'id_livro': id,
+                                                      'usuarios': usuarios})
         else:
             return HttpResponse('Esse livro não é seu')
     return redirect('/auth/login/?status=2')
@@ -72,4 +73,16 @@ def excluir_livro(request, id):
 
 
 def emprestar_livro(request, id):
-    return HttpResponse('teste')
+    if request.method =='POST':
+        nome_emprestado = request.POST.get('nome_emprestado')
+        livro_emprestado = id
+
+        emprestimo = Emprestimo(nome_emprestado_id = nome_emprestado, livro_id = livro_emprestado)
+
+        emprestimo.save()
+
+        livro = Livros.objects.get(id = livro_emprestado)
+        livro.emprestado = True
+        livro.save()
+
+        return HttpResponse('Emprestimo cadastrado com sucesso!')
