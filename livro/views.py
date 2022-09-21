@@ -80,15 +80,33 @@ def emprestar_livro(request, id):
         livro = Livros.objects.get(id=id_livro_emprestado)
 
     if livro.emprestado == False:
-            emprestimo = Emprestimo(
-                nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
+        emprestimo = Emprestimo(
+            nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
 
-            emprestimo.save()
-            livro.emprestado = True
-            livro.save()
+        emprestimo.save()
+        livro.emprestado = True
+        livro.save()
 
-            return HttpResponse('Emprestimo cadastrado com sucesso!')
+        return HttpResponse('Emprestimo cadastrado com sucesso!')
     else:
 
-            return HttpResponse('Desculpe, esse livro está emprestado')
+        return HttpResponse('Desculpe, esse livro está emprestado')
+
+
+def devolver_livro(request, id):
+    if request.method == 'POST':
+        nome_emprestado = request.POST.get('nome_emprestado')
+        id_livro_emprestado = id
+
+        livro = Livros.objects.get(id=id_livro_emprestado)
+
+    if livro.emprestado == True:
+        devolucao = Emprestimo(
+            nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
+
+        devolucao.save()
+        livro.emprestado = False
+        livro.save()
+
+        return HttpResponse('Devolução cadastrada com sucesso!')
 
