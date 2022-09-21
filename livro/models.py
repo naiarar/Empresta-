@@ -3,6 +3,7 @@ from django.db import models
 from uuid import uuid4
 from datetime import datetime
 from usuarios.models import Usuario
+import datetime
 
 
 class Categoria(models.Model):
@@ -33,10 +34,18 @@ class Livros(models.Model):
 
  
 class Emprestimo(models.Model):
+    choices = (
+        ('P', 'Péssimo'),
+        ('R', 'Ruim'),
+        ('B', 'Bom'),
+        ('O', 'Ótimo')
+
+    )
     nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
-    data_emprestimo = models.DateField(blank=True, null=True)
+    data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
     data_devolucao = models.DateField(blank=True, null=True)
     livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
+    avaliacao = models.CharField(max_length=1, choices=choices)
 
     def __str__(self):
         return f'{self.nome_emprestado} | {self.livro}'
