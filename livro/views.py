@@ -13,7 +13,6 @@ def home(request):
         livros = Livros.objects.filter(usuario=usuario)
         form = CadastroLivro()
         form.fields['usuario'].initial = request.session['usuario']
-        livros_emprestar = Livros.objects.filter(usuario = usuario).filter(emprestado = False)
 
         conteudo = {
             'livros': livros,
@@ -39,7 +38,8 @@ def ver_livros(request, id):
                                                       'usuario_logado': request.session.get('usuario'),
                                                       'form': form,
                                                       'id_livro': id,
-                                                      'usuarios': usuarios})
+                                                      'usuarios': usuarios,
+                                                      })
         else:
             return HttpResponse('Esse livro não é seu')
     return redirect('/auth/login/?status=2')
@@ -73,16 +73,22 @@ def excluir_livro(request, id):
 
 
 def emprestar_livro(request, id):
-    if request.method =='POST':
+    if request.method == 'POST':
         nome_emprestado = request.POST.get('nome_emprestado')
-        livro_emprestado = id
+        id_livro_emprestado = id
 
-        emprestimo = Emprestimo(nome_emprestado_id = nome_emprestado, livro_id = livro_emprestado)
+        livro = Livros.objects.get(id=id_livro_emprestado)
 
-        emprestimo.save()
+    if livro.emprestado == False:
+            emprestimo = Emprestimo(
+                nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
 
-        livro = Livros.objects.get(id = livro_emprestado)
-        livro.emprestado = True
-        livro.save()
+            emprestimo.save()
+            livro.emprestado = True
+            livro.save()
 
-        return HttpResponse('Emprestimo cadastrado com sucesso!')
+            return HttpResponse('Emprestimo cadastrado com sucesso!')
+    else:
+
+            return HttpResponse('Desculpe, esse livro está emprestado')
+
