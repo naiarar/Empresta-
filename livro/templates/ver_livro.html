@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block 'conteudo' %}
+
+
+
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -74,6 +77,7 @@
     <br>
     <br>
     <form id="form_emprestimo" action="{% url 'emprestar_livro' livro.id %}" method="POST">{% csrf_token %}
+
         <select id="nome_emprestado" name="nome_emprestado">
 
             {% for usuario in usuarios %}
@@ -83,22 +87,26 @@
         </select>
 
 
-        <input onclick="exibe_input_emprestado(1)" type="submit" value="Emprestar Livro" class="btn btn-success">
+        <input type="submit" value="Emprestar Livro" class="btn btn-success">
     </form>
     <br>
-
-    <form id="form_devolucao" action="{% url 'devolver_livro' livro.id %}" method="POST">{% csrf_token %}
-        <select id="nome_emprestado" name="nome_emprestado">
-
-            {% for usuario in usuarios %}
-            <option value="{{usuario.id}}">{{usuario.nome}}</option>
-            {% endfor %}
-
-        </select>
+    <br>
 
 
-        <input onclick="exibe_input_devolucao(1)" type="submit" value="Devolver Livro" class="btn btn-secondary">
-    </form>
+
+
+    <div id="devolucao">
+        <form action="{% url 'devolver_livro' livro.id %}" method="POST">{% csrf_token %}
+
+            <input type="submit" class="btn btn-warning" value="Devolver">
+        </form>
+    </div>
+
+
+
+
+
+
 
 </div>
 {% endblock %}
