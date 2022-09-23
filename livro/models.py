@@ -1,9 +1,9 @@
 from email import generator
 from django.db import models
 from uuid import uuid4
-from datetime import datetime
+from datetime import datetime, date
 from usuarios.models import Usuario
-import datetime
+
 
 
 class Categoria(models.Model):
@@ -42,8 +42,8 @@ class Emprestimo(models.Model):
 
     )
     nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
-    data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
-    data_devolucao = models.DateTimeField(default=datetime.datetime.now())
+    data_emprestimo = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    data_devolucao = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
     avaliacao = models.CharField(max_length=1, choices=choices)
 

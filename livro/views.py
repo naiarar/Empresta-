@@ -2,6 +2,7 @@ from curses.ascii import HT
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from datetime import datetime
 from usuarios.models import Usuario
 from .models import Emprestimo, Livros
 from .forms import CadastroLivro
@@ -18,7 +19,8 @@ def home(request):
             'livros': livros,
             'usuario_logado': request.session.get('usuario'),
             'form': form,
-            'usuario': usuario
+            'usuario': usuario,
+            'status': request.GET.get('status')
         }
 
         return render(request, 'home.html', conteudo)
@@ -68,8 +70,11 @@ def cadastrar_livro(request):
 
 
 def excluir_livro(request, id):
-    livro = Livros.objects.get(id=id).delete()
-    return redirect('/livro/home')
+    if livro.usuario.id == request.session['usuario']:
+        livro = Livros.objects.get(id=id).delete()
+        return redirect('/livro/home')
+    else:
+        return redirect('auth/sair')
 
 
 def emprestar_livro(request, id):
@@ -81,32 +86,38 @@ def emprestar_livro(request, id):
 
     if livro.emprestado == False:
         emprestimo = Emprestimo(
-            nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
+                nome_emprestado_id=nome_emprestado,
+                livro_id=id_livro_emprestado)
 
         emprestimo.save()
         livro.emprestado = True
         livro.save()
 
-        return redirect('/livro/home')
+        return redirect('/livro/home/?status=10')
     else:
 
-        return HttpResponse('Desculpe, esse livro está emprestado')
+        return redirect('/livro/home/?status=1')
 
 
 def devolver_livro(request, id):
-    if request.method == 'POST':
-        nome_emprestado = request.POST.get('nome_emprestado')
-        id_livro_emprestado = id
+    livro_devolver = Livros.objects.get(id = id)
+    livro_devolver.emprestado = False
+    livro_devolver.save()
 
-        livro = Livros.objects.get(id=id_livro_emprestado)
 
-    if livro.emprestado == True:
-        devolucao = Emprestimo(
-            nome_emprestado_id=nome_emprestado, livro_id=id_livro_emprestado)
 
-        devolucao.save()
-        livro.emprestado = False
-        livro.save()
+    devolucao = Emprestimo.objects.filter(livro_id=id).order_by('-data_emprestimo')[0]
 
-        return redirect('/livro/home')
+    devolucao.data_devolucao = datetime.now() 
+    devolucao.save()
 
+
+    return redirect('/livro/home/?status=11')
+
+
+def seus_emprestimos(request):
+    usuario = Usuario.objects.get(id=request.session['usuario'])
+    emprestimos = Emprestimo.objects.filter(nome_emprestado=usuario)
+
+    return render(request, 'seus_emprestimos.html', {'usuario_logado': request.session['usuario'],
+                                                     'emprestimos': emprestimos})
