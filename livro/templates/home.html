@@ -4,9 +4,24 @@
 {% block 'conteudo' %}
 
 <div class="container">
-    <br>
+    {% if status == '1' %}
+    <div class="alert alert-danger" role="alert">
+        Desculpe, esse livro já está emprestado
+    </div>
+    {% endif %}
+    {% if status == '10' %}
+    <div class="alert alert-success" role="alert">
+        Emprestimo realizado com sucesso
+    </div>
+    {% endif %}
 
-    <div class="row">
+    {% if status == '11' %}
+    <div class="alert alert-primary" role="alert">
+        Devolução realizada com sucesso
+    </div>
+    {% endif %}
+
+    <div class="row pt-3">
         <div class="col">
 
             <h2>Biblioteca de {{usuario.nome}}</h2> 
@@ -15,7 +30,7 @@
 
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-3">
         {% for livro in livros %}
         <div class="col-md">
             <div class="card" style="width: 18rem;">
@@ -64,6 +79,8 @@
 
 
         {% endfor %}
+
+
     </div>
 </div>
 {% endblock %}
