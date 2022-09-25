@@ -10,6 +10,7 @@ urlpatterns = [
     path('emprestar_livro/<int:id>', views.emprestar_livro, name = 'emprestar_livro'),
     path('devolver_livro/<int:id>', views.devolver_livro, name = 'devolver_livro'),
     path('seus_emprestimos', views.seus_emprestimos, name = 'seus_emprestimos'),
+    path('processa_avaliacao', views.processa_avaliacao, name = 'processa_avaliacao'),
 
 
 ]
