@@ -48,7 +48,7 @@
             </div>
             <div class="modal-body">
                 <form action="{% url 'processa_avaliacao' %}" method="POST">{% csrf_token %}
-                    <input type="hidden" name="id_livro" value="id_livro">
+                    <input type="hidden" name="id_livro" value="{{id_livro}}">
                     <input id="id_emprestimo" type="hidden" name="id_emprestimo">
                     <select class="form-control" name="opcoes">
                         <option value="P">Péssimo</option>
