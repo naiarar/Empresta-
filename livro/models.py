@@ -1,9 +1,8 @@
-from email import generator
-from django.db import models
-from uuid import uuid4
-from datetime import datetime, date
+from django.db import models    
+from datetime import date
+import datetime
+from django.db.models.base import Model
 from usuarios.models import Usuario
-
 
 
 class Categoria(models.Model):
@@ -39,18 +38,13 @@ class Emprestimo(models.Model):
         ('R', 'Ruim'),
         ('B', 'Bom'),
         ('O', 'Ótimo')
-
     )
-    nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
-    data_emprestimo = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    data_devolucao = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, blank = True, null = True)
+    data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
+    data_devolucao = models.DateTimeField(blank = True, null = True)
     livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
-    avaliacao = models.CharField(max_length=1, choices=choices)
+    avaliacao = models.CharField(max_length=1, choices=choices, null=True, blank=True)
 
-    def __str__(self):
-        return f'{self.nome_emprestado} | {self.livro}'
-
-
-
-
+    def __str__(self) -> str:
+        return f"{self.nome_emprestado} | {self.livro}"
 
