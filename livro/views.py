@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from datetime import datetime
+import livro
 from usuarios.models import Usuario
 from .models import Emprestimo, Livros
 from .forms import CadastroLivro
@@ -86,8 +87,8 @@ def emprestar_livro(request, id):
 
     if livro.emprestado == False:
         emprestimo = Emprestimo(
-                nome_emprestado_id=nome_emprestado,
-                livro_id=id_livro_emprestado)
+            nome_emprestado_id=nome_emprestado,
+            livro_id=id_livro_emprestado)
 
         emprestimo.save()
         livro.emprestado = True
@@ -100,17 +101,15 @@ def emprestar_livro(request, id):
 
 
 def devolver_livro(request, id):
-    livro_devolver = Livros.objects.get(id = id)
+    livro_devolver = Livros.objects.get(id=id)
     livro_devolver.emprestado = False
     livro_devolver.save()
 
+    devolucao = Emprestimo.objects.filter(
+        livro_id=id).order_by('-data_emprestimo')[0]
 
-
-    devolucao = Emprestimo.objects.filter(livro_id=id).order_by('-data_emprestimo')[0]
-
-    devolucao.data_devolucao = datetime.now() 
+    devolucao.data_devolucao = datetime.now()
     devolucao.save()
-
 
     return redirect('/livro/home/?status=11')
 
@@ -129,7 +128,10 @@ def processa_avaliacao(request):
     id_livro = request.POST.get('id_livro')
 
     emprestimo = Emprestimo.objects.get(id = id_emprestimo)
-    emprestimo.avaliacao = opcoes
-    emprestimo.save()
+    if emprestimo.livro.usuario.id == request.session['usuario']:
+        emprestimo.avaliacao = opcoes
+        emprestimo.save()
 
-    return redirect(f'/livro/ver_livro/{id_livro}')
+        return redirect(f'/livro/home')
+    else:
+        return HttpResponse('não')
