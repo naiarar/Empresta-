@@ -1,8 +1,10 @@
+from tkinter import CASCADE
 from django.db import models    
 from datetime import date
 import datetime
 from django.db.models.base import Model
 from usuarios.models import Usuario
+
 
 
 
@@ -44,7 +46,7 @@ class Emprestimo(models.Model):
     nome_emprestado = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, blank = True, null = True)
     data_emprestimo = models.DateTimeField(default=datetime.datetime.now())
     data_devolucao = models.DateTimeField(blank = True, null = True)
-    livro = models.ForeignKey(Livros, on_delete=models.DO_NOTHING)
+    livro = models.ForeignKey(Livros, on_delete=models.CASCADE)
     avaliacao = models.CharField(max_length=1, choices=choices, null=True, blank=True)
 
     def __str__(self) -> str:
