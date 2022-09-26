@@ -105,8 +105,7 @@ def devolver_livro(request, id):
     livro_devolver.emprestado = False
     livro_devolver.save()
 
-    devolucao = Emprestimo.objects.filter(
-        livro_id=id).order_by('-data_emprestimo')[0]
+    devolucao = Emprestimo.objects.filter(livro_id=id).order_by('-data_emprestimo')[0]
 
     devolucao.data_devolucao = datetime.now()
     devolucao.save()
