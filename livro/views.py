@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from datetime import datetime
-import livro
 from usuarios.models import Usuario
 from .models import Emprestimo, Livros
 from .forms import CadastroLivro
@@ -62,7 +61,8 @@ def historico_emprestimos(request, id):
 
 def cadastrar_livro(request):
     if request.method == 'POST':
-        form = CadastroLivro(request.POST)
+        form = CadastroLivro(request.POST, request.FILES)
+
         if form.is_valid:
             form.save()
             return redirect('/livro/home')
@@ -105,7 +105,8 @@ def devolver_livro(request, id):
     livro_devolver.emprestado = False
     livro_devolver.save()
 
-    devolucao = Emprestimo.objects.filter(livro_id=id).order_by('-data_emprestimo')[0]
+    devolucao = Emprestimo.objects.filter(
+        livro_id=id).order_by('-data_emprestimo')[0]
 
     devolucao.data_devolucao = datetime.now()
     devolucao.save()
@@ -126,7 +127,7 @@ def processa_avaliacao(request):
     opcoes = request.POST.get('opcoes')
     id_livro = request.POST.get('id_livro')
 
-    emprestimo = Emprestimo.objects.get(id = id_emprestimo)
+    emprestimo = Emprestimo.objects.get(id=id_emprestimo)
     if emprestimo.livro.usuario.id == request.session['usuario']:
         emprestimo.avaliacao = opcoes
         emprestimo.save()
