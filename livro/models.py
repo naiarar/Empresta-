@@ -5,6 +5,7 @@ from django.db.models.base import Model
 from usuarios.models import Usuario
 
 
+
 class Categoria(models.Model):
     nome = models.CharField(max_length=30)
     descricao = models.TextField()
@@ -13,6 +14,7 @@ class Categoria(models.Model):
         return self.nome
 
 class Livros(models.Model):
+    image = models.ImageField(upload_to='capa_livro', null=True, blank=True)
     titulo = models.CharField(max_length=100)
     autor = models.CharField(max_length=50)
     qnt_pag = models.IntegerField()
