@@ -13,9 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-                <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
+             <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
 
             </div>
 
@@ -25,6 +23,8 @@
 
 
 <div style="text-align: center;" class="container">
+
+
     <h1> {{livro.titulo}} </h1>
     <label>Autor:</label>
     <h4> {{livro.autor}} </h4>
@@ -99,8 +99,7 @@
 
     <div id="devolucao">
         <form action="{% url 'devolver_livro' livro.id %}" method="POST">{% csrf_token %}
-
-            <input type="submit" class="btn btn-warning" value="Devolver Livro">
+            <input type="submit" class="btn btn-info" value="Devolver Livro">
         </form>
     </div>
 
