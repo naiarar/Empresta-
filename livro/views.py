@@ -71,8 +71,9 @@ def cadastrar_livro(request):
 
 
 def excluir_livro(request, id):
+    livro = Livros.objects.get(id=id)
     if livro.usuario.id == request.session['usuario']:
-        livro = Livros.objects.get(id=id).delete()
+        livro.delete()
         return redirect('/livro/home')
     else:
         return redirect('auth/sair')
@@ -106,7 +107,7 @@ def devolver_livro(request, id):
     livro_devolver.save()
 
     devolucao = Emprestimo.objects.filter(
-        livro_id=id).order_by('-data_emprestimo')[0]
+        livro_id=id, data_devolucao=None).order_by('-data_emprestimo')[0]
 
     devolucao.data_devolucao = datetime.now()
     devolucao.save()
@@ -131,7 +132,7 @@ def processa_avaliacao(request):
     if emprestimo.livro.usuario.id == request.session['usuario']:
         emprestimo.avaliacao = opcoes
         emprestimo.save()
-
-        return redirect(f'/livro/home')
+        print(id_livro)
+        return redirect(f'/livro/ver_livro/{emprestimo.livro_id}')
     else:
         return HttpResponse('não')
