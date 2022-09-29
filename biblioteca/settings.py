@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'livro',
     'usuarios',
+    'index',
 ]
 
 MIDDLEWARE = [
@@ -121,8 +122,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
+CSS_URL = '/css/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CSS_ROOT = os.path.join(BASE_DIR, 'css')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
