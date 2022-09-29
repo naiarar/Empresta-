@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Biblioteca</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <header>
+
+        <nav>
+            <img src="/media/logo.png">
+            <p class="brand">minha<strong>biblioteca</strong></p>
+            <ul>
+                <li><a href="about">About</a></li>
+                <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            <div class="header-block">
+                <div class="text">
+                    <h2>A melhor rede social para pessoas viciadas em livros</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, dicta!
+                    </p>
+
+                </div>
+                <img src="/media/faca amor.jpg">
+            </div>
+
+        </div>
+
+    </main>
+</body>
+
+</html>
