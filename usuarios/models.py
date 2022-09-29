@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 
+
 class Usuario(models.Model):
     nome = models.CharField(max_length=30)
     email = models.EmailField()
@@ -17,4 +18,3 @@ class Usuario(models.Model):
 
     def __str__(self) -> str:
         return self.nome
-         
