@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Biblioteca</title>
+    <title>emprestaí</title>
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -15,7 +15,7 @@
 
         <nav>
             <img src="/media/logo.png">
-            <p class="brand">minha<strong>biblioteca</strong></p>
+            <p class="brand">emprest<strong>aí</strong></p>
             <ul>
                 <li><a href="about">About</a></li>
                 <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
@@ -28,18 +28,40 @@
         <div class="content">
             <div class="header-block">
                 <div class="text">
-                    <h2>A melhor rede social para pessoas viciadas em livros</h2>
+                    <h2>Uma rede social para pessoas apaixonadas por livros</h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, dicta!
+                        Bora compartilhar essa paixão
                     </p>
 
                 </div>
-                <img src="/media/faca amor.jpg">
+                <img src="/media/tag.png">
             </div>
 
         </div>
 
     </main>
+    <section class="catalog" id="catalog">
+        <div class="title-wrapper-catalog">
+            <p>Digite livro que você procura</p>
+            <h3>Catalogo</h3>
+        </div>
+        <div class="filter-card">
+            <input type="text" class="search-input" placeholder="Escolha seu livro favorito" />
+            <button class="search-button">Buscar</button>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-item">
+                <img src="/media/faca amor.jpg" alt="Book">
+                <div class="card-content">
+                    <h3>Faça amor, não faça jogo</h3>
+                </div>
+                <p> Um livro de Ique Carvalho</p>
+                <button type="button">Quero emprestar esse livro!</button>
+
+            </div>
+        </div>
+
+    </section>
 </body>
 
 </html>
