@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap');
 
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     outline: none;
-    font-family: "Roboto", sans-serif;
+    font-family: "Quicksand", sans-serif;
 
 }
 
@@ -14,6 +13,10 @@
     --brown: #824104;
     --nude: #F39E4E;
     --gray: #ededed;
+    --blue: #185864;
+    --blue-light: #2bb0b0;
+
+
 }
 
 html,
@@ -23,16 +26,15 @@ body {
 }
 
 
-header {
-    min-width: 300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+header,
+main {
     width: 100%;
-    background-color: var(--brown);
+    background: var(--brown);
 
 }
+
+
+
 
 header img {
     max-width: 80px;
@@ -48,7 +50,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
 }
 
@@ -83,24 +85,78 @@ nav ul li a:hover {
 
 }
 
+
 .content .header-block {
     max-width: 1000px;
     min-width: 300px;
+    height: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
     background: var(--nude);
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
     position: relative;
-    z-index: 10;
-    padding: 10px;
+    z-index: 50;
+
 }
 
 .header-block img {
-    width: 50%;
+    width: 13%;
     position: absolute;
-    right: 2%;
-    bottom: 2%;
+    right: 3%;
+    bottom: 353px;
+    color: var(--brown);
 
+}
+
+.header-block .text {
+    position: absolute;
+    /* bottom: 30%; */
+    right: 30%;
+
+
+}
+
+.header-block .text h2 {
+    color: var(--blue);
+    margin-bottom: 0px;
+    text-align: center;
+    transform: translateX(-20px);
+    transition: transform 0.5s;
+
+}
+
+.header-block .text p {
+    max-width: 280px;
+    text-align: right;
+    /* color: var(--blue-light); */
+    transform: translateX(-20px);
+    transition: transform 0.4s;
+
+}
+
+/* Catalogo */
+
+section .catalog {
+    width: 100vw;
+    height: 100px;
+
+}
+
+section .filter-card {
+    width: 1000px;
+    height: 150px;
+    background-color: var(--brown);
+    border-radius: 8px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
 }
