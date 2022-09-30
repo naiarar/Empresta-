@@ -15,15 +15,17 @@
     <a class="navbar-brand" href="{% url 'home' %}">Minha Biblioteca</a>
     {% if usuario_logado%}
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         Menu
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal">Cadastrar Livro</button>
+        <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal">Cadastrar
+          Livro</button>
         <a href="{% url 'seus_emprestimos'%}" class="btn btn-danger dropdown-item" type="button">Seus emprestimos</a>
         <a href="{% url 'sair'%}" class="btn btn-danger dropdown-item" type="button">Sair</a>
       </div>
-    </div> 
+    </div>
     {% endif%}
 
   </nav>
