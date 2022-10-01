@@ -187,6 +187,18 @@ section .filter-card {
 }
 
 .title-wrapper-catalog {
-    margin-top: 200px;
+    margin-top: 10px;
     padding-bottom: 20px;
+
+}
+
+section .card-wrapper {
+    max-width: 1000px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-gap: 30px;
+    padding-top: 50px;
+
+
 }
