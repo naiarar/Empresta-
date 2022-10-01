@@ -186,4 +186,7 @@ section .filter-card {
     color: var(--brown);
 }
 
-.title-wrapper-catalog {}
+.title-wrapper-catalog {
+    margin-top: 200px;
+    padding-bottom: 20px;
+}
