@@ -189,6 +189,7 @@ section .filter-card {
 .title-wrapper-catalog {
     margin-top: 10px;
     padding-bottom: 20px;
+    text-align: center;
 
 }
 
