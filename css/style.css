@@ -198,13 +198,14 @@ section .card-wrapper {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    grid-gap: 30px;
-    padding-top: 50px;
+    grid-gap: 50px;
+    padding-top: 10px;
+    align-items: stretch;
 }
 
 section .card-item {
     height: 400px;
-    background: var(--brown);
+    background: var(--nude);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -215,4 +216,24 @@ section .card-item {
 section .card-item img {
     width: 200px;
     height: auto;
+    display: flex;
+}
+
+.card-content {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.card-item h3 {
+    width: 100%;
+
+}
+
+
+section .catalog {
+    background-color: #F39E4E80s
 }
