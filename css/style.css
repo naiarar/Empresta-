@@ -200,6 +200,19 @@ section .card-wrapper {
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-gap: 30px;
     padding-top: 50px;
+}
 
+section .card-item {
+    height: 400px;
+    background: var(--brown);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
 
+section .card-item img {
+    width: 200px;
+    height: auto;
 }
