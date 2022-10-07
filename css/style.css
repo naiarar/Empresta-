@@ -193,17 +193,18 @@ section .filter-card {
 
 }
 
-section .card-wrapper {
-    max-width: 1000px;
+.card-wrapper {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-gap: 50px;
     padding-top: 10px;
     align-items: stretch;
+    justify-items: center;
+    padding: 0 16px;
 }
 
-section .card-item {
+.card-item {
     height: 400px;
     background: var(--nude);
     border-radius: 8px;
@@ -211,13 +212,9 @@ section .card-item {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 16px;
 }
 
-section .card-item img {
-    width: 200px;
-    height: auto;
-    display: flex;
-}
 
 .card-content {
     height: 40%;
@@ -228,12 +225,22 @@ section .card-item img {
 
 }
 
+.card-item img {
+    width: 200px;
+    height: auto;
+    display: flex;
+}
+
 .card-item h3 {
     width: 100%;
+    color: var(--blue);
 
 }
 
+.card-item p {
+    width: 90%;
+    font-style: italic;
+    color: var(--blue);
 
-section .catalog {
-    background-color: #f39e4e52
+
 }
