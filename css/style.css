@@ -241,6 +241,23 @@ section .filter-card {
     width: 90%;
     font-style: italic;
     color: var(--blue);
+    padding-bottom: 10px;
+}
 
+.card-item button {
+    width: 90%;
+    padding: 7px 0px;
+    border: none;
+    background: var(--gray);
+    border-radius: 4px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.card-item button:hover {
+    background: var(--brown);
+    color: var(--gray);
 
 }
