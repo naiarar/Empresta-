@@ -268,5 +268,12 @@ section .filter-card {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.about h3 {
+    color: var(--blue);
+
 
 }
+
+.about p {}
