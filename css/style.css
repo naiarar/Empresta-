@@ -89,7 +89,7 @@ nav ul li a:hover {
 .content .header-block {
     max-width: 1000px;
     min-width: 300px;
-    height: 450px;
+    /* height: 450px; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -105,31 +105,32 @@ nav ul li a:hover {
 
 }
 
-.header-block img {
+.header-block #tag {
     width: 13%;
     position: absolute;
     right: 3%;
     bottom: 353px;
     color: var(--brown);
+    top: 0;
 
 }
 
 .header-block .text {
-    position: absolute;
+    /* position: absolute; */
     /* bottom: 30%; */
-    right: 30%;
+    /* right: 30%; */
 
 
 }
 
 .header-block .text h2 {
     color: var(--blue);
-    margin-bottom: 0px;
+    padding-bottom: 32px;
     text-align: center;
     transform: translateX(-20px);
     transition: transform 0.5s;
-
-}
+    max-width: 92%;
+}   
 
 .header-block .text p {
     max-width: 280px;
@@ -224,6 +225,7 @@ section .filter-card {
     justify-content: space-around;
 
 }
+
 
 .card-item img {
     width: 200px;
