@@ -17,7 +17,7 @@
             <img src="/media/logo.png">
             <p class="brand">emprest<strong>aí</strong></p>
             <ul>
-                <li><a href="about">About</a></li>
+                <li><a href="/index/templates/about.html">About</a></li>
                 <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
 
@@ -30,20 +30,25 @@
             <div class="header-block">
                 <div class="text">
                     <h2>Uma rede social para pessoas apaixonadas por livros</h2>
-                    <p>
-                        Bora compartilhar essa paixão
-                    </p>
-                    <br>
-                    <br>
-                    <br>
-                    <p>
-                        Como resistir aquele cheirinho de livro?
-                        Se você assim como nós não consegue resistir
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-around;">
+                        <div>
 
-                    </p>
+                            <p style="margin-bottom: 32px;">
+                                Bora compartilhar essa paixão
+                            </p>
+                            <p>
+                                Como resistir aquele cheirinho de livro?
+                                Se você assim como nós não consegue resistir
+    
+                            </p>
+                        </div>
+                        <img style="max-height: 200px;" src="/media/biblioteca.png" alt="">
+                    </div>
                 </div>
-                <img src="/media/tag.png">
+                <img id="tag" src="/media/tag.png">
             </div>
+     
 
         </div>
         <section class="catalog" id="catalog">
